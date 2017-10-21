@@ -1,0 +1,34 @@
+{%import 'macros.html' as macro%}
+{%block content%}
+  <div class="container">
+    <h3>Business</h3>
+    <ul>
+      {{macro.displaySourcesList('business')}}
+    </ul>
+    <h3>Politics</h3>
+    <ul>
+      {{macro.displaySourcesList('politics')}}
+    </ul>
+    <h3>Technology</h3>
+    <ul>
+      {{macro.displaySourcesList('technology')}}
+    </ul>
+    <h3>Entertainment</h3>
+    <ul>
+      {{macro.displaySourcesList('entertainment')}}
+    </ul>
+    <h3>Science and Nature</h3>
+    <ul>
+      {{macro.displaySourcesList('science')}}
+    </ul>
+    <h3>Music</h3>
+    <ul>
+      {{macro.displaySourcesList('music')}}
+    </ul>
+    <h3>Sports</h3>
+    <ul>
+      {{macro.displaySourcesList('sport')}}
+    </ul>
+
+  </div>
+  {% endblock%}

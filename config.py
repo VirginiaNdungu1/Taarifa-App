@@ -2,8 +2,7 @@ import os
 
 
 class Config:
-    SOURCES_API_BASE_URL = 'https://newsapi.org/v1/sources?language={}&category={}&country={}&apiKey={}'
-
+    SOURCES_API_BASE_URL = 'https://newsapi.org/v1/sources?&category={}&apiKey={}'
     ARTICLES_API_BASE_URL = 'https://newsapi.org/v1/articles?source={}&sortBy={}&apiKey={}'
 
     # set environment variables
@@ -23,5 +22,3 @@ config_options = {
     'development': DevConfig,
     'production': ProdConfig
 }
-
-'
