@@ -22,4 +22,12 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
+    # set up config_options
+    from .requests import configure_request
+    configure_request(app)
+    '''
+    call the configure_request function and pass in the application instance
+    Gives access to the application object
+    '''
+
     return app
