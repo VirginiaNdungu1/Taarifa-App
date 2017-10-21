@@ -2,7 +2,7 @@ import os
 
 
 class Config:
-    SOURCES_API_BASE_URL = 'https://newsapi.org/v1/sources?&category={}&apiKey={}'
+    SOURCES_API_BASE_URL = 'https://newsapi.org/v1/sources?language=en&country=us&category={}&apiKey={}'
     ARTICLES_API_BASE_URL = 'https://newsapi.org/v1/articles?source={}&sortBy={}&apiKey={}'
 
     # set environment variables
