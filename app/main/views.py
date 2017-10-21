@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for
+from flask import render_template, request, redirect, url_for
 from . import main
 from ..requests import get_sources
 
@@ -22,4 +22,4 @@ def index():
     sport_sources = get_sources('sport')
 
     title = 'Welcome to Global News Source Site'
-    return render_template('index.html', title=title, politics=politics_sources, technology=get_sources, business=business_sources, entertainment=entertainment_sources, science=science_sources, music=music_sources, sport=sport_sources)
+    return render_template('index.html', title=title, politics=politics_sources, technology=technology_sources, business=business_sources, entertainment=entertainment_sources, science=science_sources, music=music_sources, sport=sport_sources)
