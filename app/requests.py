@@ -49,10 +49,23 @@ def get_sources(category):
     return sources_results
 
 
-# def get_sources_articles(source, sort_by):
+def get_sources_articles(source):
     '''
     Function that get's the json response to the url request
     '''
+    get_sources_articles_url = articles_base_url.format(source, apiKey)
+    with urllib.request.urlopen(get_sources_articles_url) as url:
+        get_sources_article_data = url.read()
+        get_sources_articles_response = json.loads(get_sources_article_data)
+
+        sources_articles_results = None
+
+        if get_sources_articles_response['articles']:
+            sources_articles_results_list = get_sources_articles_response['articles']
+            sources_articles_results = process_results(
+                sources_articles_results_list)
+
+    return sources_articles_results
 
 
 def process_results(sources_list):
