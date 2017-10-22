@@ -23,3 +23,11 @@ def index():
 
     title = 'Welcome to Global News Source Site'
     return render_template('index.html', title=title, politics=politics_sources, technology=technology_sources, business=business_sources, entertainment=entertainment_sources, science=science_sources, music=music_sources, sport=sport_sources)
+
+
+@main.route("/articles/<source_id>")
+def articles(source_id):
+    source_articles = get_sources_articles(source_id)
+    title = f'{article.title}'
+
+    return render_template("articles.html", title=title, source_articles=source_articles)
