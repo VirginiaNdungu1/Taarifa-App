@@ -1,11 +1,13 @@
 import urllib.request
 import json
-from .models import news_source
+from .models import news_source, Articles
 
 # Get the api key
 apiKey = None
 # Get the source base url
 source_base_url = None
+
+articles_base_url = None
 
 
 def configure_request(app):
@@ -14,7 +16,7 @@ def configure_request(app):
     And Replaces the values of the None variables
     to application configuration objects
     '''
-    global apiKey, source_base_url
+    global apiKey, source_base_url, articles_base_url
 
     apiKey = app.config['NEWS_API_KEY']
     '''
@@ -25,6 +27,7 @@ def configure_request(app):
     '''
     get the News Sources Url from the config Object
     '''
+
     articles_base_url = app.config['ARTICLES_API_BASE_URL']
     '''
     get the source's article url from the config object
@@ -68,14 +71,15 @@ def process_results(sources_list):
 
         sources_object = news_source(id, name, url, description)
         sources_results.append(sources_object)
+
     return sources_results
 
 
-def get_sources_articles(source_id):
+def get_sources_articles(id):
     '''
     Function that get's the json response to the url request
     '''
-    get_articles_url = articles_base_url.format(source, apiKey)
+    get_articles_url = articles_base_url.format(id, apiKey)
     with urllib.request.urlopen(get_articles_url) as url:
         get_article_data = url.read()
         get_articles_response = json.loads(get_article_data)
@@ -84,8 +88,7 @@ def get_sources_articles(source_id):
 
         if get_articles_response['articles']:
             articles_results_list = get_articles_response['articles']
-            articles_results = process_article_results(
-                articles_results_list)
+            articles_results = process_article_results(articles_results_list)
 
     return articles_results
 
@@ -93,15 +96,15 @@ def get_sources_articles(source_id):
 def process_article_results(articles_list):
     articles_results = []
     for article_item in articles_list:
-        source_id = article_item.get("source")
+        # source = article_item.get("source")
         author = article_item.get("author")
         title = article_item.get("title")
         description = article_item.get("description")
+        article_url = article_item.get("url")
         logo = article_item.get("urlToImage")
         publishedAt = article_item.get("publishedAt")
-
-        articles_object = Article(source_id,
-                                  author, title, description, logo, publishedAt)
+        articles_object = Articles(
+            author, title, description, article_url, logo, publishedAt)
         articles_results.append(articles_object)
 
     return articles_results
