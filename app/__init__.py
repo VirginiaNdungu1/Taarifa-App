@@ -2,10 +2,11 @@
 from flask import Flask
 
 # import Boostrap class
-from flask_boostrap import Boostrap
+from flask_bootstrap import Bootstrap
 # initialise configurations
 from config import config_options
-
+#
+bootstrap = Bootstrap()
 # setting up configurations
 
 
