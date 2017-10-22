@@ -2,7 +2,9 @@
   {% for source in sources_list%}
     <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 source-card">
     <li class="text-center">
-      <h5>{{ source.name }}</h5>
+      <h5>
+        <a href="/articles/{{source.id}}">{{ source.name }}</a>
+      </h5>
       <a href="{{ source.homepage_url }}">{{ source.id}}</a>
       <hr>
       <p>{{ source.description }}</p>
@@ -11,5 +13,20 @@
     </li>
   </div>
 {% endfor %}
+{% endmacro %}
 
+{% macro displayArticlesList(articles_list) %}
+{% for article in articles_list%}
+  <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 card" style="width: 40%">
+    <img src="{{ article.logo }}" style="height: 400px" alt="{{ article.title }} " class="img-responsive">
+    <div class="card-block">
+      <h3>
+        <a href="{{article.article_url}}">{{article.title}}</a>
+      </h3>
+      <h4>{{article.description}}</h4>
+      <p>{{ article.author }}</p>
+      <p>{{article.publishedAt}}</p>
+    </div>
+  </div>
+{% endfor %}
 {% endmacro %}
