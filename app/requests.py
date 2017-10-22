@@ -25,13 +25,17 @@ def configure_request(app):
     '''
     get the News Sources Url from the config Object
     '''
+    articles_base_url = app.config['ARTICLES_API_BASE_URL']
+    '''
+    get the source's article url from the config object
+    '''
 
 
 def get_sources(category):
     '''
-    Function that gets the json response to the ur request
+    Function that gets the json response to the url request
     '''
-    get_sources_url = 'https://newsapi.org/v1/sources'.format(category, apiKey)
+    get_sources_url = source_base_url.format(category, apiKey)
     with urllib.request.urlopen(get_sources_url) as url:
         get_sources_data = url.read()
         get_sources_response = json.loads(get_sources_data)
@@ -43,6 +47,12 @@ def get_sources(category):
             sources_results = process_results(sources_results_list)
 
     return sources_results
+
+
+# def get_sources_articles(source, sort_by):
+    '''
+    Function that get's the json response to the url request
+    '''
 
 
 def process_results(sources_list):
