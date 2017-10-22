@@ -71,7 +71,7 @@ def process_results(sources_list):
     return sources_results
 
 
-def get_sources_articles(source):
+def get_sources_articles(source_id):
     '''
     Function that get's the json response to the url request
     '''
@@ -93,14 +93,15 @@ def get_sources_articles(source):
 def process_article_results(articles_list):
     articles_results = []
     for article_item in articles_list:
+        source_id = article_item.get("source")
         author = article_item.get("author")
         title = article_item.get("title")
         description = article_item.get("description")
         logo = article_item.get("urlToImage")
         publishedAt = article_item.get("publishedAt")
 
-        articles_object = Article(
-            author, title, description, logo, publishedAt)
+        articles_object = Article(source_id,
+                                  author, title, description, logo, publishedAt)
         articles_results.append(articles_object)
 
     return articles_results
