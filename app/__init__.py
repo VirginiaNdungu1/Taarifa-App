@@ -2,7 +2,7 @@
 from flask import Flask
 
 # import Boostrap class
-# from flask_boostrap import Boostrap
+from flask_boostrap import Boostrap
 # initialise configurations
 from config import config_options
 
@@ -16,7 +16,7 @@ def create_app(config_name):
     app.config.from_object(config_options[config_name])
 
     # initialise flask extensions
-    # bootstrap.init_app(app)
+    bootstrap.init_app(app)
 
     # Register the Blueprint
     from .main import main as main_blueprint
